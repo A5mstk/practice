@@ -5,8 +5,10 @@ Vi
  * git diff で　No newline at end of file　が出たときの対処
    * :set binary noeol
 
- *  の入力方法
+ * 改行コード「CRLF」 の入力方法
+   * vi -b test.txt    # -b でバイナリモードでエディタ起動
    * [Ctrl] ＋ [V] キーを押してから、[Ctrl] ＋ [M]
+   * 「^M」で表示される
 
 Spork
 $ spork
