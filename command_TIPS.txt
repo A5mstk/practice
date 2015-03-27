@@ -1,0 +1,86 @@
+Vi
+ * 行末の空白を一括削除
+   * autocmd BufWritePre * :%s/\s\+$//ge
+
+ * git diff で　No newline at end of file　が出たときの対処
+   * :set binary noeol
+
+ *  の入力方法
+   * [Ctrl] ＋ [V] キーを押してから、[Ctrl] ＋ [M]
+
+Spork
+$ spork
+$ rspec --drb hoge_spec.rb 
+
+Zeus
+$ gem install zeus
+$ zeus init
+$ zeus start
+
+Linux
+ * 一部のディレクトリを除いてファイル内検索をする
+   * grep -r --exclude-dir=log search_word *　# log に一致するディレクトリを除いて検索する
+   * grep じゃなくて git grep コマンドを使っていった方が良さそう
+
+ * ファイル名検索
+   * find ディレクトリ 検索条件 アクション
+   * 例：find . -name file_name -ls   # ファイル名が file_name に一致する
+   * 検索条件 
+     * -name パターン   # ファイル名がパターンに一致するファイル名を検索する
+     * -empty   # 空のファイルを検索する
+     * -type f   # ファイル検索
+     * -type d   # ディレクトリ検索 
+ 
+Git
+ * hash 値からのブランチ確認
+   * git describe --all --contains commit_hash
+
+ * 間違ったファイルをコミット、プッシュしてしまった
+   * git rebase -i HEAD^^ (<-いくつ前のコミットまで変更するか)
+   * s, squash コマンドを入力　（新しいコミットに対して使用し、1つ古いコミットへ統合する）
+ cf. おかしくなった時は　git rebase --abort で rebase 前に戻せる。
+
+ * コミットをやり直す
+   * git add (加えたいファイル)
+   * git commit --amend
+
+ * コミット状態を戻す
+   * git reset --hard ORIG_HEAD
+   * git reset --hard HEAD^     # ワークディレクトリの内容も消す
+   * git reset --soft HEAD^     # ワークディレクトリの内容は残す
+
+ * 不要なブランチ削除
+   * git branch -d ブランチ名 
+   * git branch -D ブランチ名   # マージされたか問わず削除
+
+ * 不要なコミットを削除するコミットを生成
+   * git revert <commit>
+
+ * リモートブランチを取得
+   * git checkout -b other_branch origin/other_branch
+
+ * alias の追加
+   * ~/.gitconfig を編集する
+   * git config --system alias.st status    # status を st で実行
+
+ * alias の削除
+   * git config --global --unset alias.myAlias
+
+ * push 確認
+   * git diff HEAD origin/ticket/num
+
+ * log 出力
+   * git log --pretty=oneline | head -20 | tac | sed -e "s|\([a-z0-9]*\) \(.*\)|* [\1/${PWD##*/}]\n * \2\n|"
+    # ticket 貼付への整形して出力
+   * git log --name-status   # 編集されたファイルを表示する
+
+Ruby
+ * 速度確認
+   {{{
+     start_time = Time.now
+     # 処理
+     p "全体: #{Time.now - start_all}s"
+   }}}
+ * デバッグ
+   * binding.pry
+     * pry> !!!   # 強制終了
