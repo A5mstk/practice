@@ -5,6 +5,11 @@ Vi
  * git diff で　No newline at end of file　が出たときの対処
    * :set binary noeol
 
+ * 改行コード確認
+   * cat -e test.txt
+     * \n : lf : $
+     * \r : cr : ^M
+     * \r\n : crlf : ^M$
  * 改行コード「CRLF」 の入力方法
    * vi -b test.txt    # -b でバイナリモードでエディタ起動
    * [Ctrl] ＋ [V] キーを押してから、[Ctrl] ＋ [M]
